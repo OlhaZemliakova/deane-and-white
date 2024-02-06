@@ -56,9 +56,9 @@
             display: flex;
             flex-direction: column;
 
-            @include media-breakpoint-up(lg) {
-                justify-content: space-between;
+            @include media-breakpoint-up(md) {
                 flex-direction: row;
+                justify-content: space-between;
             }
         }
 

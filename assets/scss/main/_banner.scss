@@ -7,6 +7,7 @@
     background-position-x: center;
     height: 100vh;
     background-size: cover;
+    position: relative;
 
     &::before {
         content: "";
@@ -15,17 +16,21 @@
         width: 100%;
         height: 100%;
         display: block;
+        position: absolute;
     }
 
     &__content {
-        position: absolute;
-        top: 50%;
         width: 100%;
+        padding-bottom: 200px;
+        padding-top: 200px;
+        z-index: 2;
+        position: relative;
 
         @include media-breakpoint-up(lg) {
             width: 50%;
         }
     }
+        
 
     &__heading {
         font-family: "Staatliches", sans-serif;
@@ -37,8 +42,11 @@
         text-align: center;
         text-transform: uppercase;
 
-        @include media-breakpoint-up(lg) {
+        @include media-breakpoint-up(md) {
             text-align: start;
+        }
+
+        @include media-breakpoint-up(lg) {
             font-size: 90px;
             line-height: 108px;
         }

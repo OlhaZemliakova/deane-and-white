@@ -7,7 +7,7 @@ document
     const emailError = document.getElementById("email-error");
     const successfulMessage = document.getElementById("successful-message");
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+    
     if (!emailPattern.test(emailInput.value)) {
       emailError.style.display = "block";
       emailInput.classList.add("error");
