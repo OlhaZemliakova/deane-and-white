@@ -25,10 +25,6 @@
             background-color: $dull-blue;
         }
 
-        @include media-breakpoint-up(lg) {
-            max-width: 420px;
-        }
-
         .item-icon {
             margin-bottom: 25px;
 
