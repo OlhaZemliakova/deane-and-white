@@ -1,0 +1,104 @@
+@import "../partials/mixins";
+@import "../partials/variables";
+
+.footer {
+    background-image: url("http://deaneandwhite.com/wp-content/uploads/2022/07/footer-vegetables-background.svg");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-size: cover;
+    background-color: $black;
+    color: $white;
+    position: relative;
+
+    &::before {
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        background-color: $black;
+        opacity: 0.8;
+    }
+
+    .container {
+        z-index: 3;
+        position: relative;
+    }
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: auto;
+        padding-top: 350px;
+        padding-bottom: 50px;
+        text-align: center;
+
+        @include media-breakpoint-up(lg) {
+            grid-template-columns: 260px 260px 260px 260px;
+            padding-bottom: 150px;
+        }
+
+        .logo {
+            margin: 0 auto;
+        }
+
+        h4 {
+            font-size: 25px;
+            line-height: 38px;
+            color: $white;
+            font-weight: 400;
+            font-family: "Staatliches", sans-serif;
+            margin-bottom: 18px;
+        }
+
+        .navigation {
+            ul {
+                li a {
+                    font-size: 17px;
+                    line-height: 28px;
+                    color: $white;
+                    font-family: "Noto Sans", sans-serif;
+                }
+            }
+        }
+
+        .contacts {
+            .website {
+                margin-bottom: 25px;
+            }
+
+            .downloading-sources {
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 118px;
+                    height: auto;
+                    margin-right: 24px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                @include media-breakpoint-up(lg) {
+                    justify-content: space-between;
+
+                    img {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .copyright {
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        font-size: 16px;
+        line-height: 26px;
+        font-family: "Noto Sans", sans-serif;
+    }
+}
