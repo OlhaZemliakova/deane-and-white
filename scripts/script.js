@@ -1,41 +1,63 @@
-document.addEventListener("DOMContentLoaded", function () {
-  document
-    .getElementById("subscribe-form")
-    .addEventListener("submit", handleFormSubmit);
-});
+document.addEventListener("DOMContentLoaded", function() {
 
-function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const emailInput = document.getElementById("email-input");
-  const emailError = document.getElementById("email-error");
-  const successfulMessage = document.getElementById("successful-message");
-
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailPattern.test(emailInput.value)) {
-    displayError(emailError, emailInput);
-    return false;
+  function handleFormSubmit(event) {
+    event.preventDefault();
+  
+    const emailInput = document.getElementById("email-input");
+    const email = emailInput.value.trim();
+    
+    if (!isValidEmail(email)) {
+      displayError("Please enter a valid email address", emailInput);
+      return false;
+    }
+  
+    hideError(emailInput);
+    sendForm(emailInput);
   }
 
-  hideError(emailError, emailInput);
+  function isValidEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
 
-  const button = document.querySelector(".button--subscribe");
-  button.textContent = "Sending...";
+  function displayError(errorMessage, inputElement) {
+    const errorElement = document.getElementById("email-error");
+    errorElement.textContent = errorMessage;
+    errorElement.style.display = "block";
+    inputElement.classList.add("error");
+  }
+  
+  function hideError(inputElement) {
+    const errorElement = document.getElementById("email-error");
+    errorElement.style.display = "none";
+    inputElement.classList.remove("error");
+  }
 
-  setTimeout(function () {
+  function sendForm(emailInput) {
+    showSendingMessage();
+    setTimeout(function () {
+      hideForm(emailInput);
+      showSuccessMessage();
+    }, 1000);
+  }
+
+  function showSendingMessage() {
+    const button = document.querySelector(".button--subscribe");
+    button.textContent = "Sending...";
+  }
+
+  function hideForm(emailInput) {
+    const button = document.querySelector(".button--subscribe");
     emailInput.style.display = "none";
     button.style.display = "none";
+  }
+
+  function showSuccessMessage() {
+    const successfulMessage = document.getElementById("successful-message");
     successfulMessage.style.display = "block";
-  }, 1000);
-}
+  }
 
-function displayError(errorElement, inputElement) {
-  errorElement.style.display = "block";
-  inputElement.classList.add("error");
-}
+  const form = document.querySelector("form");
+  form.addEventListener("submit", handleFormSubmit);
 
-function hideError(errorElement, inputElement) {
-  errorElement.style.display = "none";
-  inputElement.classList.remove("error");
-}
+});
